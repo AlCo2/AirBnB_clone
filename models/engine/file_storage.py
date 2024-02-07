@@ -9,7 +9,7 @@ from models.base_model import BaseModel
 
 class FileStorage:
     """
-    FileStorage that serializes instances to a JSON
+    sFileStorage that serializes instances to a JSON
     file and deserializes JSON file to instances
     """
 
@@ -32,14 +32,17 @@ class FileStorage:
         """
         key = obj.__class__.__name__
         key += "." + obj.id
-        self.__objects[key] = obj.to_dict()
+        self.__objects[key] = obj
 
     def save(self):
         """
         serializes __objects to the JSON file
         """
+        objectscpy = {}
+        for key, obj in self.__objects.items():
+            objectscpy[key] = obj.to_dict()
         with open(self.__file_path, 'w') as file:
-            file.write(json.dumps(self.__objects))
+            file.write(json.dumps(objectscpy))
 
     def reload(self):
         """
@@ -47,5 +50,8 @@ class FileStorage:
         """
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, 'r') as file:
-                self.__objects = json.loads(file.read())
-        print(self.__objects)
+                try:
+                    for key, value in json.load(file).items():
+                        self.__objects[key] = eval(value["__class__"])(**value)
+                except:
+                    pass
