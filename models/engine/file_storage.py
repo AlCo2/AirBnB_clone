@@ -15,13 +15,18 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """ Returns all saved objects in storage """
+        """
+        returns the dictionary __objects
+        """
         return self.__objects
 
     def new(self, obj):
-        """ Records the new object in JSON for storage """
-        FileStorage.__objects[type(obj).__name__ + "."
-                              + obj.id] = obj
+        """
+        serializes __objects to the JSON file
+        """
+        key = obj.__class__.__name__
+        key += "." + obj.id
+        self.__objects[key] = obj
 
     def save(self):
         """ Save the JSON File to storage """
