@@ -24,7 +24,7 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
-    def emptyline(line):
+    def emptyline(self):
         """
         if the line is empty, do nothing
         """
