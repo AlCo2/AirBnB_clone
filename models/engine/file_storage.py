@@ -22,6 +22,7 @@ class FileStorage:
         """ Records the new object in JSON for storage """
         FileStorage.__objects[type(obj).__name__ + "."
                               + obj.id] = obj.to_dict()
+        # Should have it assigned to obj. Redo.
 
     def save(self):
         """ Save the JSON File to storage """
