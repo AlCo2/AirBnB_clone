@@ -35,7 +35,6 @@ class BaseModel:
         """
         updates the public instance attr updated_at
         """
-        models.storage.save()
         self.updated_at = datetime.now()
         models.storage.save()
 
