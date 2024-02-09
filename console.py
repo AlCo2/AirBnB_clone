@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
                 model = eval(f"{line}")()
                 model.save()
                 print(model.id)
-            except error:
+            except Exception:
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
