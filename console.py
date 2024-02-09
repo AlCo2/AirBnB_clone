@@ -60,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
                 if len(result) > 1:
                     class_key = result[0] + '.' + result[1]
                     if class_key in self.storage_list:
-                        print(storage_list[class_key])
+                        print(self.storage_list[class_key])
                     else:
                         print("** no instance found **")
                 else:
@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
                 if len(result) > 1:
                     class_key = result[0] + '.' + result[1]
                     if class_key in self.storage_list:
-                        del storage_list[class_key]
+                        del self.storage_list[class_key]
                         models.storage.save()
                     else:
                         print("** no instance found **")
@@ -112,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, line):
         """
             Adds & Updates special attributes to an instance
-            Usage: update <class> <id> <attribute> <value> 
+            Usage: update <class> <id> <attribute> <value>
         """
         if line:
             command = line.split()
@@ -130,15 +130,18 @@ class HBNBCommand(cmd.Cmd):
                     print("** value missing **")
                     return
 
-                id = command[0] + '.' + command[1]
-                if id in self.storage_list:
-						
-				else:
-					print("** no instance found **")
+                obj_id = command[0] + '.' + command[1]
+                if obj_id in self.storage_list:
+                    obj = self.storage_list[obj_id]
+                    setattr(obj, f'{command[2]}', eval(command[3]))
+                    models.storage.save()
+                else:
+                    print("** no instance found **")
             else:
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
