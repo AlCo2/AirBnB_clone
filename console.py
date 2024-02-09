@@ -35,8 +35,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """
-            Creates a new instance of a class
-            Usage: create <object id>
+        Creates a new instance of a class
+        Usage: create <object id>
         """
         if line:
             try:
@@ -50,9 +50,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """
-            Prints the string representation of an instance
-            based on the class name and id
-            Usage: show <object id>
+        Prints the string representation of an instance
+        based on the class name and id
+        Usage: show <object id>
         """
         if line:
             result = line.split()
@@ -72,8 +72,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """
-            Deletes an instance based on the class name and id
-            Usage: destroy <object id>
+        Deletes an instance based on the class name and id
+        Usage: destroy <object id>
         """
         if line:
             result = line.split()
@@ -94,8 +94,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """
-            Displays all instance of a class
-            Usage: all <optional: class>
+        Displays all instance of a class
+        Usage: all <optional: class>
         """
         if line:
             if line not in self.class_list:
@@ -111,8 +111,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """
-            Adds & Updates special attributes to an instance
-            Usage: update <class> <id> <attribute> <value>
+        Adds & Updates special attributes to an instance
+        Usage: update <class> <id> <attribute> <value>
         """
         if line:
             command = line.split()
