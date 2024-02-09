@@ -37,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """
         Creates a new instance of a class
-        Usage: create <object id>
+        Usage: create <class>
         """
         if line:
             try:
