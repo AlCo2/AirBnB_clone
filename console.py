@@ -2,23 +2,32 @@
 """
     The AirBnB Console
 """
-
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
     """ A simple commandline interpreter for the console """
 
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
 
     def do_quit(self, line):
-        """ Exits the console """
+        """
+        quit: stop the program from running
+        """
         return True
 
     def do_EOF(self, line):
-        """ Exits the console """
+        """
+        EOF: make the program stop
+        """
         return True
 
+    def emptyline(self):
+        """
+        if the line is empty, do nothing
+        """
+        pass
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
