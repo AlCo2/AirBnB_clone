@@ -134,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
                 if obj_id in self.storage_list:
                     obj = self.storage_list[obj_id]
                     setattr(obj, f'{command[2]}', eval(command[3]))
-                    models.storage.save()
+                    obj.save()
                 else:
                     print("** no instance found **")
             else:
