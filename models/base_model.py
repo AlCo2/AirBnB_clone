@@ -44,9 +44,9 @@ class BaseModel:
         of __dict__
         """
         newdict = self.__dict__.copy()
+        newdict['__class__'] = type(self).__name__
         newdict['created_at'] = self.created_at.isoformat()
         newdict['updated_at'] = self.updated_at.isoformat()
-        newdict['__class__'] = type(self).__name__
         return newdict
 
     def __str__(self):
