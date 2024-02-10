@@ -16,7 +16,6 @@ class FileStorage:
     """
         Simulating a storage system using JSON
     """
-    # Class Attributes to ensure global recall.
     __file_path = "./file.json"
     __objects = {}
 
