@@ -9,6 +9,8 @@ from models.user import User
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -17,7 +19,8 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     class_list = ["BaseModel", "User", "City",
-                  "State", "Amenity"]
+                  "State", "Amenity", "Place", "Review"]
+
     storage_list = models.storage.all()
 
     def do_quit(self, line):
@@ -106,13 +109,19 @@ class HBNBCommand(cmd.Cmd):
             if line not in self.class_list:
                 print("** class doesn't exist **")
                 return
-        str_all = "["
-        for i, obj in enumerate(self.storage_list.values()):
-            str_all += '"' + str(obj) + '"'
-            if (i != len(self.storage_list) - 1):
-                str_all += ', '
-        str_all += "]"
-        print(str_all)
+            else:
+                str_all = "["
+                for i, obj in enumerate(self.storage_list.values()):
+                    if line == obj.__class__.__name__:
+                        str_all += '"' + str(obj) + '"' + ", "
+                str_all = str_all[:-2] + "]"
+                print(str_all)
+        else:
+            str_all = "["
+            for i, obj in enumerate(self.storage_list.values()):
+                str_all += '"' + str(obj) + '"' + ", "
+            str_all = str_all[:-2] + "]"
+            print(str_all)
 
     def do_update(self, line):
         """
