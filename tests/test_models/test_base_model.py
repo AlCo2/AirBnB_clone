@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+unit test for base_storage
+"""
 import unittest
 from models.base_model import BaseModel
 
