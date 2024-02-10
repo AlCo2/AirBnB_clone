@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 import unittest
-from models.base_model import BaseModel 
+from models.base_model import BaseModel
+
 
 class testBaseModel(unittest.TestCase):
-
+    """
+    working on test cases for BaseModel
+    """
     def test_unique_uuid(self):
         base = BaseModel()
         base2 = BaseModel()
@@ -17,7 +20,7 @@ class testBaseModel(unittest.TestCase):
     def test_idType(self):
         base = BaseModel()
         self.assertEqual(str, type(base.id))
-    
+
     def test_number(self):
         base = BaseModel()
         base.my_number = 89
