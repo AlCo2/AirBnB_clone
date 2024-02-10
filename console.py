@@ -168,7 +168,11 @@ class HBNBCommand(cmd.Cmd):
             class_name = args[0]
             args = args[1].split('(')
             cmd = args[0]
-            return cmd + ' ' + class_name
+            if len(args) > 1:
+                args = args[1].split(')')
+            class_id = args[0].replace('\'', '')
+            class_id = class_id.replace('\"', '')
+            return cmd + ' ' + class_name + ' ' + class_id
         else:
             return line
 
