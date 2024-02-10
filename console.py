@@ -6,6 +6,9 @@ import cmd
 import models
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
 
 
 class HBNBCommand(cmd.Cmd):
@@ -13,7 +16,8 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
-    class_list = ["BaseModel", "User"]
+    class_list = ["BaseModel", "User", "City",
+                  "State", "Amenity"]
     storage_list = models.storage.all()
 
     def do_quit(self, line):
