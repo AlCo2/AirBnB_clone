@@ -147,6 +147,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def do_count(self, line):
+        """ count how many instance of a class exist """
+        count = 0
+        if line in self.class_list:
+            for key in self.storage_list:
+                args = key.split('.')
+                if args[0] == line:
+                    count += 1
+            print(count)
+        else:
+            print("** class doesn't exist **")
+
     def precmd(self, line):
         """
         handle command with dot if exist
