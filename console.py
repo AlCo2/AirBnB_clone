@@ -147,6 +147,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def precmd(self, line):
+        """
+        handle command with dot if exist
+        """
+        args = line.split('.')
+        if len(args) > 1:
+            class_name = args[0]
+            args = args[1].split('(')
+            cmd = args[0]
+            return cmd + ' ' + class_name
+        else:
+            return line
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
