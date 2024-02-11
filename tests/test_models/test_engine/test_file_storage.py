@@ -88,3 +88,19 @@ class TestFileStorage(unittest.TestCase):
             self.assertEqual(models.storage.all(), {})
         except Exception:
             pass
+
+    def test_alltype(self):
+        """
+        test tyoe of storage.all return
+        """
+        self.assertEqual(dict, type(models.storage.all()))
+
+    def test_new_with_args(self):
+        """ test add args to new """
+        with self.assertRaises(TypeError):
+            models.storage.new(User(), 1)
+
+    def test_reload_with_args(self):
+        """ add args to reload """
+        with self.assertRaises(TypeError):
+            models.storage.reload(1)
