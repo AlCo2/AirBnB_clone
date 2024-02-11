@@ -16,7 +16,7 @@ class FileStorage:
     """
         Simulating a storage system using JSON
     """
-    __file_path = "./file.json"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -38,13 +38,13 @@ class FileStorage:
         tmp = {}
         for key, val in self.__objects.items():
             tmp[key] = val.to_dict()
-        with open(self.__file_path, 'w', encoding='utf-8') as db:
+        with open(self.__file_path, 'w') as db:
             json.dump(tmp, db)
 
     def reload(self):
         """ Deserialize the json file for information retrieval """
         try:
-            with open(FileStorage.__file_path, 'r') as db:
+            with open(self.__file_path, 'r') as db:
                 self.__objects = json.load(db)
             for key, obj in self.__objects.items():
                 self.__objects[key] = eval(obj["__class__"])(**obj)
