@@ -36,17 +36,17 @@ class FileStorage:
     def save(self):
         """ Save the JSON File to storage """
         tmp = {}
-        for key, val in FileStorage.__objects.items():
+        for key, val in self.__objects.items():
             tmp[key] = val.to_dict()
-        with open(FileStorage.__file_path, 'w', encoding='utf-8') as db:
+        with open(self.__file_path, 'w', encoding='utf-8') as db:
             json.dump(tmp, db)
 
     def reload(self):
         """ Deserialize the json file for information retrieval """
         try:
             with open(FileStorage.__file_path, 'r') as db:
-                FileStorage.__objects = json.load(db)
-            for key, obj in FileStorage.__objects.items():
-                FileStorage.__objects[key] = eval(obj["__class__"])(**obj)
+                self.__objects = json.load(db)
+            for key, obj in self.__objects.items():
+                self.__objects[key] = eval(obj["__class__"])(**obj)
         except Exception:
             pass
