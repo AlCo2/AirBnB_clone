@@ -44,7 +44,7 @@ class TestFileStorage(unittest.TestCase):
 
         except FileNotFoundError:
             models.storage = FileStorage()
-            test_new()
+            self.test_new()
 
     def test_save(self):
         """ Tests the serialization of the class """
