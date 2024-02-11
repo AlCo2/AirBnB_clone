@@ -172,6 +172,9 @@ class HBNBCommand(cmd.Cmd):
         """
         handle command with dot if exist
         """
+        attr = ''
+        value = ''
+        class_id = ''
         args = line.split('.')
         if len(args) > 1:
             class_name = args[0]
@@ -179,9 +182,17 @@ class HBNBCommand(cmd.Cmd):
             cmd = args[0]
             if len(args) > 1:
                 args = args[1].split(')')
-            class_id = args[0].replace('\'', '')
-            class_id = class_id.replace('\"', '')
-            return cmd + ' ' + class_name + ' ' + class_id
+                args = args[0].split(',')
+                class_id = args[0].replace('\'', '')
+                class_id = class_id.replace('\"', '')
+            if len(args) > 1:
+                attr = args[1]
+                attr = attr.replace(' ', '')
+                attr = attr.replace('\'', '')
+            if len(args) > 2:
+                value = args[2]
+                value = value.replace(' ', '')
+            return cmd + ' ' + class_name + ' ' + class_id + ' ' + attr + ' ' + value
         else:
             return line
 
