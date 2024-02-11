@@ -44,14 +44,15 @@ class TestFileStorage(unittest.TestCase):
 
         except FileNotFoundError:
             models.storage = FileStorage()
-            test_new()
+            self.test_new()
 
     def test_save(self):
         """ Tests the serialization of the class """
         models.storage.save()
         with open("file.json", 'r') as db:
-            self.assertIs(type(db.read()), str)
-            self.assertIs(type(json.load(db), dict))
+            content = db.read()
+            self.assertIs(type(content), str)
+            self.assertIs(type(json.loads(content)), dict)
 
     def test_reload_all(self):
         """ Tests the deserialization of class objects """
