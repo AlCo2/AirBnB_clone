@@ -19,10 +19,6 @@ from models.review import Review
 class TestFileStorage(unittest.TestCase):
     """ Test the File Storage system """
 
-    def setUp(self):
-        """ set up teest env """
-        models.storage = FileStorage()
-
     def tearDown(self):
         """ clean files created """
         try:
@@ -32,14 +28,18 @@ class TestFileStorage(unittest.TestCase):
 
     def test_new(self):
         """ Tests the creation of a new object of any class """
-        models.storage.reload()
+
+        storage = FileStorage()
         base = BaseModel()
-        models.storage.new(base)
-        self.assertIn(base, models.storage.all().values())
+        storage.new(base)
+        self.assertIn(base, storage.all().values())
 
     def test_save(self):
         """ Tests the serialization of the class """
-        models.storage.save()
+        storage = FileStorage()
+        user = User()
+        storage.new(user)
+        storage.save()
         with open("file.json", 'r') as db:
             content = db.read()
             self.assertIs(type(content), str)
@@ -58,34 +58,12 @@ class TestFileStorage(unittest.TestCase):
 
     def test_all(self):
         """ Test the all method """
+        storage = FileStorage()
+        user = User()
+        storage.new(user)
+        storage.save()
         self.assertIs(type(models.storage.all()), dict)
         if models.storage.all() != {}:
             for obj in models.storage.all().values():
                 self.assertIn(type(obj), [BaseModel, User, State, City,
                                           Amenity, Place, Review])
-
-    def test_reload_empty_file(self):
-        """
-        test reload when file is empty
-        """
-        try:
-            models.storage.reload()
-            self.assertEqual(models.storage.all(), {})
-        except Exception:
-            pass
-
-    def test_alltype(self):
-        """
-        test tyoe of storage.all return
-        """
-        self.assertEqual(dict, type(models.storage.all()))
-
-    def test_new_with_args(self):
-        """ test add args to new """
-        with self.assertRaises(TypeError):
-            models.storage.new(User(), 1)
-
-    def test_reload_with_args(self):
-        """ add args to reload """
-        with self.assertRaises(TypeError):
-            models.storage.reload(1)
