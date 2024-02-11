@@ -194,7 +194,7 @@ class HBNBCommand(cmd.Cmd):
             if len(args) > 2:
                 value = args[2]
                 value = value.replace(' ', '')
-            return cmd + ' ' + class_name + ' ' + class_id + ' ' + attr + ' ' + value
+            return f"{cmd} {class_name} {class_id} {attr} {value}"
         else:
             return line
 
