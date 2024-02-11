@@ -4,7 +4,6 @@ Unittest for the FileStorage system/class
 """
 import unittest
 from models.engine.file_storage import FileStorage
-import models
 import os
 import json
 from models.base_model import BaseModel
@@ -62,8 +61,8 @@ class TestFileStorage(unittest.TestCase):
         user = User()
         storage.new(user)
         storage.save()
-        self.assertIs(type(models.storage.all()), dict)
-        if models.storage.all() != {}:
-            for obj in models.storage.all().values():
+        self.assertIs(type(storage.all()), dict)
+        if storage.all() != {}:
+            for obj in storage.all().values():
                 self.assertIn(type(obj), [BaseModel, User, State, City,
                                           Amenity, Place, Review])
