@@ -119,8 +119,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             str_all = "["
             for i, obj in enumerate(self.storage_list.values()):
-                str_all += '"' + str(obj) + '"' + ", "
-            str_all = str_all[:-2] + "]"
+                str_all += '"' + str(obj) + '"'
+                if (i != len(self.storage_list) - 1):
+                    str_all += ', '
+            str_all += "]"
             print(str_all)
 
     def do_update(self, line):
