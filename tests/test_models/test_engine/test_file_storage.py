@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """
-Unittest for the FileStorage system/class
+unittest for storage file
 """
-import unittest
-from models.engine.file_storage import FileStorage
 
 
 class TestFileStorage(unittest.TestCase):
-    """ Test the File Storage system """
+    """
+    class to test FileStorage class
+    """
     pass
