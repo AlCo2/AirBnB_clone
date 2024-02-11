@@ -11,17 +11,13 @@ class testBaseModel(unittest.TestCase):
     working on test cases for BaseModel
     """
     def test_unique_uuid(self):
-        """
-        test if uuid unique
-        """
+        """ Test if the id of base is unique """
         base = BaseModel()
         base2 = BaseModel()
         self.assertNotEqual(base.id, base2.id)
 
     def test_name(self):
-        """
-        test if name added
-        """
+        """ Test if variables can be assigned to class """
         base = BaseModel()
         base.name = "test_name"
         self.assertEqual(base.name, "test_name")
@@ -33,37 +29,40 @@ class testBaseModel(unittest.TestCase):
         base = BaseModel()
         self.assertEqual(str, type(base.id))
 
-    def test_number(self):
-        """
-        test using number
-        """
+    def test_save(self):
+        """ Test the idType of the class """
         base = BaseModel()
-        base.my_number = 89
-        self.assertEqual(base.my_number, 89)
-
-    def test_add(self):
-        """
-        test addition on number
-        """
-        base = BaseModel()
-        base.my_number = 1
-        base.my_number += 1
-        self.assertEqual(base.my_number, 2)
+        self.assertEqual(str, type(base.id))
 
     def test_save(self):
-        """
-        test save methode
-        """
+        """ Test the save method """
         base = BaseModel()
         oldtime = base.updated_at
         base.save()
         self.assertNotEqual(base.updated_at, oldtime)
 
     def test_save_created_at(self):
-        """
-        test time change of updated at
-        """
+        """ Check if class attribute is constant """
         base = BaseModel()
         old_created_at = base.created_at
         base.save()
         self.assertEqual(base.created_at, old_created_at)
+
+    def test_updated_at(self):
+        """ Tests if save-time updates """
+        base = BaseModel()
+        base.save()
+        self.assertNotEqual(base.created_at, base.updated_at)
+
+    def test_display(self):
+        """ Test the display of the class """
+        base = BaseModel()
+        disp = f"[BaseModel] ({base.id}) {base.__dict__}"
+        self.assertEqual(disp, base.__str__())
+
+    def test_dict(self):
+        """ Test the dictionary public method """
+        base = BaseModel()
+        self.assertIn('__class__', base.to_dict())
+        self.assertIn('created_at', base.to_dict())
+        self.assertIn('updated_at', base.to_dict())
