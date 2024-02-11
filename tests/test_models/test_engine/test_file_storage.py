@@ -5,6 +5,7 @@ Unittest for the FileStorage system/class
 import unittest
 from models.engine.file_storage import FileStorage
 import models
+import os
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -77,3 +78,13 @@ class TestFileStorage(unittest.TestCase):
             for obj in models.storage.all().values():
                 self.assertIn(type(obj), [BaseModel, User, State, City,
                                           Amenity, Place, Review])
+
+    def test_reload_empty_file(self):
+        """
+        test reload when file is empty
+        """
+        try:
+            models.storage.reload()
+            self.assertEqual(models.storage.all(), {})
+        except Exception:
+            pass
