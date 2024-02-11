@@ -31,31 +31,25 @@ class TestFileStorage(unittest.TestCase):
 
     def test_new(self):
         """ Tests the creation of a new object of any class """
-        try:
-            models.storage.reload()
-            base = BaseModel()
-            models.storage.new(base)
-            self.assertIn(base, models.storage.all().values())
-            person = User()
-            models.storage.new(person)
-            self.assertIn(person, models.storage.all().values())
-            local = State()
-            models.storage.new(local)
-            self.assertIn(local, models.storage.all().values())
-            town = City()
-            models.storage.new(town)
-            self.assertIn(town, models.storage.all().values())
-            item = Amenity()
-            models.storage.new(item)
-            self.assertIn(item, models.storage.all().values())
-
-            comment = Review()
-            models.storage.new(comment)
-            self.assertIn(comment, models.storage.all().values())
-
-        except FileNotFoundError:
-            models.storage = FileStorage()
-            self.test_new()
+        models.storage.reload()
+        base = BaseModel()
+        models.storage.new(base)
+        self.assertIn(base, models.storage.all().values())
+        person = User()
+        models.storage.new(person)
+        self.assertIn(person, models.storage.all().values())
+        local = State()
+        models.storage.new(local)
+        self.assertIn(local, models.storage.all().values())
+        town = City()
+        models.storage.new(town)
+        self.assertIn(town, models.storage.all().values())
+        item = Amenity()
+        models.storage.new(item)
+        self.assertIn(item, models.storage.all().values())
+        comment = Review()
+        models.storage.new(comment)
+        self.assertIn(comment, models.storage.all().values())
 
     def test_save(self):
         """ Tests the serialization of the class """
