@@ -1,7 +1,11 @@
 #!/usr/bin/python3
+"""
+Unittest for the FileStorage system/class
+"""
 import unittest
 from models.engine.file_storage import FileStorage
 import models
+import json
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -11,7 +15,7 @@ from models.place import Place
 from models.review import Review
 
 
-class testFileStorage(unittest.TestCase):
+class TestFileStorage(unittest.TestCase):
     """ Test the File Storage system """
 
     def test_new(self):
@@ -44,11 +48,10 @@ class testFileStorage(unittest.TestCase):
 
     def test_save(self):
         """ Tests the serialization of the class """
-        try:
-            with open("file.json", 'r') as db:
-                self.assertIs(type(db.read()), str)
-        except Exception:
-            pass
+        models.storage.save()
+        with open("file.json", 'r') as db:
+            self.assertIs(type(db.read()), str)
+            self.assertIs(type(json.load(db), dict))
 
     def test_reload_all(self):
         """ Tests the deserialization of class objects """
@@ -60,3 +63,11 @@ class testFileStorage(unittest.TestCase):
                                           Amenity, Place, Review])
         except Exception:
             pass
+
+    def test_all(self):
+        """ Test the all method """
+        self.assertIs(type(models.storage.all()), dict)
+        if models.storage.all() != {}:
+            for obj in models.storage.all().values():
+                self.assertIn(type(obj), [BaseModel, User, State, City,
+                                          Amenity, Place, Review])
