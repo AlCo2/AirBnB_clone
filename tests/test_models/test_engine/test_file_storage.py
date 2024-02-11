@@ -18,6 +18,17 @@ from models.review import Review
 class TestFileStorage(unittest.TestCase):
     """ Test the File Storage system """
 
+    def setUp(self):
+        """ set up teest env """
+        models.storage = FileStorage()
+
+    def tearDown(self):
+        """ clean files created """
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
+
     def test_new(self):
         """ Tests the creation of a new object of any class """
         try:
