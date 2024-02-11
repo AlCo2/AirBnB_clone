@@ -27,7 +27,6 @@ class TestFileStorage(unittest.TestCase):
 
     def test_new(self):
         """ Tests the creation of a new object of any class """
-
         storage = FileStorage()
         base = BaseModel()
         storage.new(base)
@@ -46,14 +45,15 @@ class TestFileStorage(unittest.TestCase):
 
     def test_reload_all(self):
         """ Tests the deserialization of class objects """
-        try:
-            models.storage.reload()
-            r_storage = models.storage.all()
-            for obj in r_storage.values():
-                self.assertIn(type(obj), [BaseModel, User, State, City,
-                                          Amenity, Place, Review])
-        except Exception:
-            pass
+        storage = FileStorage()
+        user = User()
+        storage.new(user)
+        storage.save()
+        storage.reload()
+        r_storage = storage.all()
+        for obj in r_storage.values():
+            self.assertIn(type(obj), [BaseModel, User, State, City,
+                                      Amenity, Place, Review])
 
     def test_all(self):
         """ Test the all method """
