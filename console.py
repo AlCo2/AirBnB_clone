@@ -212,6 +212,7 @@ class HBNBCommand(cmd.Cmd):
                 attr = attr.replace(' ', '')
                 if '{' not in attr:
                     attr = attr.replace('\'', '')
+                    attr = attr.replace('\"', '')
             if len(args) > 2:
                 value = args[2]
                 value = value.replace(' ', '')
