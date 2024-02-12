@@ -132,7 +132,6 @@ class HBNBCommand(cmd.Cmd):
         """
         if line:
             command = line.split()
-            print(command)
             var_btm = command[2:]
             try:
                 sep_list = []  # To accommodate cmd removal of ','
@@ -141,13 +140,11 @@ class HBNBCommand(cmd.Cmd):
                     sep_list.append(', ')
                 sep_list.pop()
                 pos_dict = "".join(sep_list)  # possible dictionary
-                print(pos_dict)
                 if type(eval(pos_dict)) is dict:
                     n_cmd = 3
             except Exception:
                 n_cmd = len(command)
 
-            print(n_cmd)
             if command[0] in self.class_list:
 
                 if n_cmd < 2:
@@ -213,6 +210,7 @@ class HBNBCommand(cmd.Cmd):
             if len(args) > 1:
                 attr = args[1]
                 attr = attr.replace(' ', '')
+                attr = attr.replace('\'', '')
             if len(args) > 1:
                 value = args[2]
                 value = value.replace(' ', '')
