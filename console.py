@@ -210,6 +210,7 @@ class HBNBCommand(cmd.Cmd):
             if len(args) > 1:
                 attr = args[1]
                 attr = attr.replace(' ', '')
+                attr = attr.replace('\'', '')
             if len(args) > 2:
                 value = args[2]
                 value = value.replace(' ', '')
