@@ -132,7 +132,13 @@ class HBNBCommand(cmd.Cmd):
         """
         if line:
             command = line.split()
-            n_cmd = len(command)
+            var_btm = command[2:]
+            try:
+                pos_dict = "".join(var_btm)  # possible dictionary
+                if type(eval(pos_dict)) is dict:
+                    n_cmd = 3
+            except Exception:
+                n_cmd = len(command)
 
             if command[0] in self.class_list:
 
@@ -143,13 +149,22 @@ class HBNBCommand(cmd.Cmd):
                     print("** attribute name missing **")
                     return
                 elif n_cmd < 4:
-                    print("** value missing **")
-                    return
+                    try:
+                        if type(eval(pos_dict)) is not dict:
+                            print("** value missing **")
+                            return
+                    except Exception:
+                        print("** value missing **")
+                        return
 
                 obj_id = command[0] + '.' + command[1]
                 if obj_id in self.storage_list:
                     obj = self.storage_list[obj_id]
-                    setattr(obj, f'{command[2]}', eval(command[3]))
+                    if n_cmd == 4:
+                        setattr(obj, f'{command[2]}', eval(command[3]))
+                    elif n_cmd == 3:
+                        for key, value in eval(pos_dict).items():
+                            setattr(obj, key, value)
                     obj.save()
                 else:
                     print("** no instance found **")
