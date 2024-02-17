@@ -4,6 +4,7 @@ body{
     color:  #484848;
     font-size: 14px;
     font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    position: relative;
 }
 .container{
     max-width: 1000px;
@@ -11,4 +12,5 @@ body{
     margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 60px;
 }
