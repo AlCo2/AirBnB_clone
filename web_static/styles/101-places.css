@@ -1,0 +1,99 @@
+.places{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.places h1{
+    font-size: 30px;
+    width: 100%;
+    text-align: left;
+}
+.places article{
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
+    position: relative;
+    min-height: 590px;
+}
+.places article h2{
+    font-size: 30px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 40px;
+}
+.price_by_night{
+    color: #FF5A5F;
+    border: 4px #FF5A5F solid;
+    border-radius: 100%;
+    min-width: 60px;
+    height: 60px;
+    font-size: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+.price_by_night p{
+    text-align: center;
+    margin-top: 14px;
+}
+.information{
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 1px #DDDDDD solid;
+    border-bottom: 1px #DDDDDD solid;
+}
+.max_guest, .number_rooms, .number_bathrooms{
+    width: 100px;
+}
+.max_guest{
+    background: url(../images/icon_group.png) no-repeat center top;
+}
+.number_rooms{
+    background: url(../images/icon_bed.png) no-repeat center top;
+}
+.number_bathrooms{
+    background: url(../images/icon_bath.png) no-repeat center top;
+}
+.max_guest p, .number_rooms p, .number_bathrooms p{
+    margin-top: 50px;
+    text-align: center; 
+}
+.places .amenities, .reviews{
+    margin-top: 40px;
+}
+.places .amenities h2,.places .reviews h2{
+    font-size: 16px; 
+    text-align: left;
+    border-bottom: 1px #DDDDDD solid;
+    margin-bottom: 0;
+}
+.places ul{
+    list-style: none;
+    padding: 0;
+}
+.tv{
+    background: url(../images/icon_tv.png) no-repeat;
+    background-size: contain;
+}
+.wifi{
+    background: url(../images/icon_wifi.png) no-repeat;
+    background-size: contain;
+}
+.pets{
+    background: url(../images/icon_pets.png) no-repeat;
+    background-size: contain;
+}
+.tv p, .wifi p, .pets p{
+    margin-left: 30px;
+}
+.reviews h3{
+    font-size: 14px;
+    margin: 0;
+}
+.reviews p{
+    font-size: 12px;
+    margin: 0;
+}

@@ -23,17 +23,17 @@ button:hover{
 .locations{
     border-right: 1px solid #DDDDDD;
 }
-.locations, .amenities{
+.locations,.filters .amenities{
     height: 100%;
     width: 25%;
     float: left;
 }
-.locations h3, .amenities h3{
+.locations h3,.filters .amenities h3{
     margin-block-end: 0;
     font-weight: 600;
     margin-left: 40px;
 }
-.locations h4, .amenities h4{
+.locations h4,.filters .amenities h4{
     margin-block-start: 0;
     font-weight: 400;
     font-size: 14px;
@@ -54,6 +54,6 @@ button:hover{
     font-size: 16px;
     margin-bottom: 0;
 }
-.locations:hover .popover, .amenities:hover .popover{
+.locations:hover .popover,.filters .amenities:hover .popover{
     display: block;
 }
